@@ -1,2 +1,7 @@
 # Sudoku
-Repository containing a Sudoku game in Python for BE 534
+
+Let's play sudoku!
+
+This program has 3 modes: easy, medium, and hard.
+
+
