@@ -21,7 +21,7 @@ def get_args():
     parser.add_argument(
         '-d',
         '--difficulty',
-        help='Level of difficulty of game (E)asy, (M)edium, or (H)ard)',
+        help='Game difficulty (E)asy, (M)edium, or (H)ard)',
         metavar='str',
         type=str,
         required=True)
@@ -30,12 +30,14 @@ def get_args():
         '-s', '--seed', help='A seed to allow for testing', action='store_true')
 
     parser.add_argument(
-        '-t', '--tip', help='Mark disallowed placements', action='store_true')
+        '-t', '--tip', help='Color bad placements', action='store_true')
+
+    parser.add_argument(
+        '-c', '--coloroff', help='Turn off coloring for testing', action='store_true')
 
     return parser.parse_args()
 # --------------------------------------------------
 class color:
-    BOLD = '\033[1m'
     GREEN = '\033[92m'
     YELLOW = '\033[93m'
     RED = '\033[91m'
@@ -152,7 +154,7 @@ def modify_board(cells,seed):
     return diag_cells,immut
 
 # --------------------------------------------------
-def print_board(cells,immut,bad,cannot,tip):
+def print_board(cells,immut,bad,cannot,tip,color_off):
 
 
     minor_border = '·'*37
@@ -163,11 +165,11 @@ def print_board(cells,immut,bad,cannot,tip):
     for i in range(0,9):
         for j in range(0,9):
             print('|' if not j%3 else '⁝',end='')
-            if tuple([i,j]) in immut:
+            if tuple([i,j]) in immut and not color_off:
                 print(color.GREEN + '{:^3}'.format(str(cells[i][j])) + color.END,end='')
-            elif tuple([i,j]) in cannot and tip:
+            elif tuple([i,j]) in cannot and tip and not color_off:
                 print(color.RED + '{:^3}'.format(str(cells[i][j])) + color.END,end='')
-            elif tuple([i,j]) in bad and tip:
+            elif tuple([i,j]) in bad and tip and not color_off:
                 print(color.YELLOW + '{:^3}'.format(str(cells[i][j])) + color.END,end='')
             else:
                 print('{:^3}'.format(str(cells[i][j])),end='')
@@ -177,7 +179,6 @@ def print_board(cells,immut,bad,cannot,tip):
 def check_board(cells, immut):
     bad = []
     cannot = []
-    neighborhood = []
 
     for row in range(0,9):
         for col in range(0,9):
@@ -206,6 +207,7 @@ def main():
     args = get_args()
     difficulty = args.difficulty
     seed = args.seed
+    color_off = args.coloroff
 
     if args.seed:
         random.seed(args.seed)
@@ -229,7 +231,7 @@ def main():
 
     while not over:
         print('\n\n')
-        print_board(cells,immut,bad,cannot,tip)
+        print_board(cells,immut,bad,cannot,tip,color_off)
         print('\n\n')
 
         resp = input('What is your next move? (format as row,column:number): ')
