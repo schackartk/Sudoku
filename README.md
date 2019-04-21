@@ -21,4 +21,75 @@ Testing is made possible using the `--seed` and `--coloroff` flags to alter the 
 
 # Expected behavior
 
+```
+$ ./sudoku.py
+usage: sudoku.py [-h] -d str [-s] [-t] [-c]
+sudoku.py: error: the following arguments are required: -d/--difficulty
 
+$ ./sudoku.py -h
+usage: sudoku.py [-h] -d str [-s] [-t] [-c]
+
+Commandline Sudoku game
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d str, --difficulty str
+                        Game difficulty (E)asy, (M)edium, or (H)ard) (default:
+                        None)
+  -s, --seed            A seed to allow for testing (default: False)
+  -t, --tip             Color bad placements (default: False)
+  -c, --coloroff        Turn off coloring for testing (default: False)
+  
+$ ./sudoku.py -d Medium -s -t -c
+
+
+
+-------------------------------------
+|   ⁝   ⁝   | 5 ⁝   ⁝ 4 |   ⁝ 9 ⁝   |
+·····································
+|   ⁝   ⁝ 9 | 6 ⁝   ⁝   |   ⁝ 5 ⁝ 4 |
+·····································
+|   ⁝   ⁝   |   ⁝ 2 ⁝   |   ⁝   ⁝   |
+-------------------------------------
+|   ⁝   ⁝ 6 |   ⁝   ⁝   |   ⁝ 3 ⁝ 5 |
+·····································
+| 4 ⁝   ⁝   |   ⁝   ⁝   |   ⁝   ⁝ 8 |
+·····································
+| 5 ⁝ 1 ⁝   |   ⁝   ⁝   | 7 ⁝   ⁝   |
+-------------------------------------
+|   ⁝   ⁝   |   ⁝ 8 ⁝   |   ⁝   ⁝   |
+·····································
+| 7 ⁝ 6 ⁝   |   ⁝   ⁝ 9 | 1 ⁝   ⁝   |
+·····································
+|   ⁝ 2 ⁝   | 4 ⁝   ⁝ 6 |   ⁝   ⁝   |
+-------------------------------------
+
+
+
+What is your next move? (format as row,column:number):
+```
+# Test suite
+A passing test suite looks like this:
+```
+$ make test
+python3 -m pytest -p no:warnings -v test.py
+=============================== test session starts ================================
+platform linux -- Python 3.7.1, pytest-4.0.2, py-1.7.0, pluggy-0.8.0 -- /rsgrps/bh_class/conda/bin/python3
+cachedir: .pytest_cache
+rootdir: /rsgrps/bh_class/schackartk/Sudoku, inifile:
+plugins: remotedata-0.3.1, openfiles-0.3.1, doctestplus-0.2.0, arraydiff-0.3
+collected 7 items
+
+test.py::test_usage PASSED                                                   [ 14%]
+test.py::test_bad_difficulty PASSED                                          [ 28%]
+test.py::test_make_board PASSED                                              [ 42%]
+test.py::test_modify_board PASSED                                            [ 57%]
+test.py::test_print_board PASSED                                             [ 71%]
+test.py::test_check_board PASSED                                             [ 85%]
+test.py::test_winning_state PASSED                                           [100%]
+
+============================= 7 passed in 1.02 seconds =============================
+```
+  
+# Author
+Code written by Kenneth Schackart (schackartk@email.arizona.edu)
