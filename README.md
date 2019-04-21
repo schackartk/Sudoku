@@ -8,3 +8,7 @@ This game plays by the usual rules:
  * Each row, column and 3x3 grid cannot contain any repeated digits
 
 The game has three `--difficulty` levels: Easy, Medium, and Hard.
+
+By including the `--tip` flag, the program will color:
+ * Moves that conflict with immutable digits in red
+ * Moves that conflict with your other move(s) in yellow
