@@ -7,4 +7,4 @@ This game plays by the usual rules:
  * You cannot change the numbers provided at the beginning of the game (shown in green)
  * Each row, column and 3x3 grid cannot contain any repeated digits
 
-
+The game has three `--difficulty` levels: Easy, Medium, and Hard.
