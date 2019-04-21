@@ -12,3 +12,7 @@ The game has three `--difficulty` levels: Easy, Medium, and Hard.
 By including the `--tip` flag, the program will color:
  * Moves that conflict with immutable digits in red
  * Moves that conflict with your other move(s) in yellow
+ 
+To place a digit, type row,column:move. For instance, to place a 5 in the top left corner you would type `1,1:5`.
+
+To remove a digit you placed, you can type row,column:d. For instance to remove the digit in the top left corner you would type `1,1:d`.
