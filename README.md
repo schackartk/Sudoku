@@ -68,11 +68,13 @@ $ ./sudoku.py -d Medium -s -t -c
 
 What is your next move? (format as row,column:number):
 ```
-See colored_conflicts.jpg for an example of the output with color enabled. This was generated with:
+See below for an example of the output with color enabled. This was generated with:
 
 `$ ./sudoku.py -d Medium -s -t`
 
 Followed by entering: `1,1:1`, `1,2:3`, `1,3:2`, `1,7:2`, `2,1:9`, `4,1:9`
+
+![image info](./colored_conflicts.JPG)
 
 # Test suite
 A passing test suite looks like this:
