@@ -93,7 +93,7 @@ def make_board(diff):
 
     return(cells)
 # --------------------------------------------------
-def modify_board(cells):
+def modify_board(cells,seed):
     diction = {}
     new_cells = [[],[],[],[],[],[],[],[],[]]
     hor_cells = [[],[],[],[],[],[],[],[],[]]
@@ -101,6 +101,8 @@ def modify_board(cells):
     diag_cells = [[],[],[],[],[],[],[],[],[]]
     this_row = ['','','','','','','','','']
     immut = []
+    if seed:
+        random.seed(seed)
 
     for l in ['a','b','c','d','e','f','g','h','i']:
         num = str(random.choice(range(1,10)))
@@ -203,6 +205,7 @@ def check_board(cells, immut):
 def main():
     args = get_args()
     difficulty = args.difficulty
+    seed = args.seed
 
     if args.seed:
         random.seed(args.seed)
@@ -218,7 +221,7 @@ def main():
         die('--difficulty "{}" must be (E)asy, (M)edium, or (H)ard'.format(difficulty))
    
     cells = make_board(diff)     #Make a seed board based on the difficulty level
-    cells,immut = modify_board(cells)  #Fill in the board with numbers and mutate
+    cells,immut = modify_board(cells,seed)  #Fill in the board with numbers and mutate
     
     over = False
     bad = set()
