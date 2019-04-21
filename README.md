@@ -16,3 +16,9 @@ By including the `--tip` flag, the program will color:
 To place a digit, type row,column:move. For instance, to place a 5 in the top left corner you would type `1,1:5`.
 
 To remove a digit you placed, you can type row,column:d. For instance to remove the digit in the top left corner you would type `1,1:d`.
+
+Testing is made possible using the `--seed` and `--coloroff` flags to alter the behavior of the `random` module and turn off all coloring.
+
+# Expected behavior
+
+
