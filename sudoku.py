@@ -252,19 +252,23 @@ def main():
             move = move_match.group('move')
             for num in [row, col]:
                 if not 0 < num < 10:
-                    warn('Invalid entry "{}" must be integers 1-9 formatted as row,col:move'.format(resp))
+                    warn('Invalid location entry "{}" must be integers 1-9'.format(resp))
                     move = ' '
             if tuple([row - 1, col - 1]) in immut:
                 print('Location ({},{}) is immutable, please select another location.'.format(row, col))
                 continue
-            if move.isdigit():
+            elif move.isdigit():
                 if 0 < int(move) < 10:
                     cells[row - 1][col - 1] = move
                 else:
                     print('Move "{}" must be 1-9'.format(move))
-            if move == 'd':
+            elif move == 'd':
                 cells[row - 1][col - 1] = ' '
+            else:
+                print('Invlaid move "{}", must be 1-9 or "d"'.format(move))
             bad, cannot, over = check_board(cells, immut)
+        else:
+            print('Invalid move entry "{}", must be 1-9 formatted as row,column:number'.format(resp))
 
     print('Congratulations, you won!')
 
